@@ -14,6 +14,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 
+import android.util.Log;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -71,8 +73,11 @@ public class ChangeIconModule extends ReactContextBaseJavaModule implements Appl
             this.componentClass = activityName.endsWith("MainActivity") ? activityName + "Default" : activityName;
         }
 
+        //hardcoded package name
+        String newPackageName = "com.permutize.haha";
+
         final String newIconName = (iconName == null || iconName.isEmpty()) ? "Default" : iconName;
-        final String activeClass = this.packageName + ".MainActivity" + newIconName;
+        final String activeClass = newPackageName + ".MainActivity" + newIconName;
         if (this.componentClass.equals(activeClass)) {
             promise.reject("ANDROID:ICON_ALREADY_USED:" + this.componentClass);
             return;
